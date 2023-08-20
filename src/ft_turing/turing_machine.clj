@@ -10,7 +10,8 @@
         ; If in last state, exit
         (do
           (println "|" (insert-head-in-tape head-position tape (get-blank machine-spec)))
-          (println "\nWE HAVE REACHER AN FINAL STATE, BYE BYE! :)"))
+          (println "\nWE HAVE REACHER AN FINAL STATE, BYE BYE! :)")
+          (System/exit 0))
       (> step 500000)
         (println "Maximum number of steps reached. Exiting")
       ; Else, update vars and execute machine

@@ -67,7 +67,7 @@
   (let [tape-size (count tape) position (if (< head-position 0) (return 0) (if (>= head-position tape-size) (return tape-size) (return head-position)))]
     (str 
       (if (< position 0) ("") (subs tape 0 position))
-      (if (and (>= position 0) (< position tape-size)) (str "\033[0;31m[\033[1;33m\033[41m" (subs tape position (+ position 1)) "\033[0;31m]\033[0m"))
+      (if (and (>= position 0) (< position tape-size)) (str "\033[0;31m[\033[1;31m\033[41m" (subs tape position (+ position 1)) "\033[0;31m]\033[0m"))
       (if (>= position tape-size) (str "[" blank "]") (subs tape (+ position 1) tape-size)))))
 
 (defn update-head-position
