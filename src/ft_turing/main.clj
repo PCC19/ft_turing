@@ -1,7 +1,7 @@
 (ns ft-turing.main
   (:require 
     [ft-turing.helpers :refer [return get-file get-blank get-alphabet get-initial get-finals is-error? success-validation]]
-    [ft-turing.validations :refer [json-was-found? json-is-valid? tape-is-valid?]]
+    [ft-turing.validations :refer [json-was-found? json-is-valid? tape-is-valid? bye]]
     [ft-turing.turing_machine :refer [turing-machine]]
     ))
 
@@ -24,7 +24,7 @@
 (defn main
   [& args]
   (if (not (= (count args) 2))
-    (println "usage: lein run [machine-spec.json] [tape]")
+    (bye "usage: lein run [machine-spec.json] [tape]")
   (do
     ((println "\n-=-=-=-=-=-=-=-=-TURING MACHINE-=-=-=-=-=-=-=-=-\n")
       (let [path-json (first args) 
@@ -32,5 +32,5 @@
             machine-spec (get-file path-json)]
         (if (validation_ok? machine-spec tape)
                 (start-turing-machine machine-spec tape)
-                (println "Finishing the Turing Machine! :("))))))
+                (bye "Finishing the Turing Machine! :("))))))
 )

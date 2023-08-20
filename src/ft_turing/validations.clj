@@ -3,6 +3,10 @@
     [ft-turing.helpers :refer :all]
   ))
 
+(defn bye [msg]
+  (println msg)
+  (System/exit 0))
+
 (defn json-was-found?
   [machine-spec]
   (print "JSON: ")

@@ -1,5 +1,6 @@
 (ns ft-turing.turing_machine
-  (:require [ft-turing.helpers :refer :all]))
+  (:require [ft-turing.helpers :refer :all]
+            [ft-turing.validations :refer [bye]]))
 
 (defn turing-machine
     [step machine-spec tape state head-position]
@@ -13,7 +14,7 @@
           (println "\nWE HAVE REACHER AN FINAL STATE, BYE BYE! :)")
           (System/exit 0))
       (> step 500000)
-        (println "Maximum number of steps reached. Exiting")
+        (bye "Maximum number of steps reached. Exiting")
       ; Else, update vars and execute machine
       :else
       (let

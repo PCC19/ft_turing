@@ -6,7 +6,7 @@ rm *.o
 path='./machines/'
 ext='.json'
 
-arq=("unary_add2" "palindrome2" "0n1n" "02n")
+arq=("unary_add" "palindrome" "0n1n" "02n")
 
 for file in ${arq[@]}; do
     cut -f 2 <(tail -n +2 $file.i) > tmp
