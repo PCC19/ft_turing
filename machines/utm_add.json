@@ -1,0 +1,21 @@
+{
+    "name" : "utm_add",
+    "alphabet": [ "1", "+", "=", "."],
+    "blank" : ".",
+    "states" : [ "i", "a", "b", "k"],
+    "initial" : "i",
+    "finals" : [ "k"],
+    "transitions" : {
+    "i": [
+        { "read" : "1", "to_state": "a", "write": ".", "action": "RIGHT"}
+    ],
+    "a": [
+        { "read" : "1", "to_state": "a", "write": "1", "action": "RIGHT"},
+        { "read" : "+", "to_state": "b", "write": "1", "action": "RIGHT"}
+    ],
+    "b": [
+        { "read" : "1", "to_state": "b", "write": "1", "action": "RIGHT"},
+        { "read" : "=", "to_state": "k", "write": "=", "action": "RIGHT"}
+    ]
+    }
+}

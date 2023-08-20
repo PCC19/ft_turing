@@ -1,0 +1,21 @@
+.111+11=
+ ^
+
+init:
+	+: w blank, error_invalid_first, right
+	=: w blank, error_invalid_first, right
+	1: w blank, go_to_plus, right
+
+go_to_plus:
+	1: w 1, go_to_plus, right
+	=: w =, error2_plus_expected, right
+	.: w =, error3_plus_expected,  right
+	+: w 1, go_to_equal, right
+
+go_to_equal:
+	1: w 1, go_to_equal, right
+	=: w =, halt_ok
+	.: w ., error4_expected_equal
+	+: w ., error4_expected_equal
+
+

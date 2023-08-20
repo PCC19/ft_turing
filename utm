@@ -1,0 +1,187 @@
+init
+	marcar estado inicial com caracter proprio
+	marca 1o char da fita com char proprio
+
+algo:
+	le char da fita e vai para estado correspondente ao char (1 estado por char do alfabeto)
+	volta ate achar marca de estado
+	avanca ate achar char correspondente ao estado (char lido)
+	muda para estado que contem informacao (w , novo_estado, m)
+	avanca ate marca do char
+	escreve char de acordo com estado
+	move marca de acordo com estado
+	volta no estadoo marcado e move marca para novo estado
+	loop
+char 3
+estados 5
+moves 2
+
+30 estados para usar de memoria
+
+--------------------------
+init:
+	primeiro estado tem que ser primeiro da fita
+	marca estado
+	marca primeiro char da fita
+
+unnary add
+char 3
+estados 5
+moves 2
+utm
+char:
+	3 x 2 (para ter marcas representando o cabecote)
+	5 x 2 (para ter marcas nos estados representando o cabecote)
+estados:
+	3 dos char lidos
+	3 dos char a escrever
+	2 dos moves a fazer
+	5 dos estados a mudar
+	total 13
+
+
+algo:
+	vai ate char marcado no input. Le e muda para estado correspondente ao char
+	Volta ate marca de estado atual
+	Avanca ate bloco correspondente ao char lido. Marca bloco
+		Avanca ate char a escrever.
+			Muda para estado do char.
+			Avanca ate char marcado.
+			Escreve
+			Volta para bloco
+		Avanca ate move a fazer
+			Muda para estado do move
+			Avanca ate char marcado
+			Desmarca
+			Realiza move do estado
+			Marca
+			Volta para bloco
+		Avanca ate novo estado
+			Muda para estado que corresponde a novo estado
+			Volta e desmarca bloco
+			Volta e desmarca estado
+			Volta para inicio
+			Vai ate estado armazenado eem estado e marca
+	Loop
+--------------------------
+
+init:
+	copia estado atual no fim da fita
+	marca 1o input
+algo
+	vai para char marcado no input. Le e armazena char no estado
+	Volta para estado marcado
+		Acha 
+	Vai para fim da fita + 1, pega char a escrever e armazena no estado
+		volta pro char marcado
+		escreve
+		volta para bloco final da fita + 2
+	Pega move a fazer e armazena no estado
+		volta para char marcado
+		desmarca
+		faz move armazenado no estado
+		marca
+		volta para bloco final da fita + 3
+	Pega novo estado e armazena no estado
+	Volta ate estado marcado
+	Desmarca
+	Volta pro inicio
+	Vai ate estado novo e marca
+	
+===============================================================
+^:i>1(a.r:a>1(a1r>+(b1r:b>1(b1r>=(k=rt11+111=.
+
+
+
+- coloca cabecotes estado i e cabecote no 1o tape
+|i>1(a.r:a>1(a1r>+(b1r:b>1(b1r>=(k=rtu1+111=.
+	- se leu u, escreve u e vai para Read_1
+
+procura estado (marca como pipe)
+- Read_1:
+	se ler qqr coisa, escreve qqr coisa e vai para |
+	se leu |, escreve pipe, vai para dir e vai para Searching_1
+
+procura char lido >c
+|i>1(a.r:a>1(a1r>+(b1r:b>1(b1r>=(k=rtu1+111=.
+- Searching_1:
+	vai para >, vai para dir
+	se leu :, erro
+	se leu 1, escreve 1, move para dir, vai para Mark_1
+|i>1[a.r:a>1(a1r>+(b1r:b>1(b1r>=(k=rtu1+111=.
+
+- Mark_1:
+	se leu (, escreve colchete, move para dir, vai para New_state_for_1
+
+marca ( como colchete (transicao a fazer)
+
+- New_state_for_1:
+|i>1[a.r:a>1(a1r>+(b1r:b>1(b1r>=(k=rtu1+111=.
+	pega estado
+	vai para inicio
+	procura pipe, troca por :
+	vai para inicio
+	procura por ":e"
+	coloca pipe
+:i>1[a.r|a>1(a1r>+(b1r:b>1(b1r>=(k=rtu1+111=.
+	vai para inicio <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< parei aqui
+	vai para colchete
+	anda 2 pra dir
+	pega char a escrever
+	anda ate algum char maiusculo
+	escreve char maiusculo
+:i>1[a.r|a>1(a1r>+(b1r:b>1(b1r>=(k=rtp1+111=.
+	volta ate [
+	anda 3 para dir
+	pega direcao a andar
+	vai ate algum char maiusculo
+	escreve minusculo
+	anda na direcao salva
+	le char
+	escreve maiusculo
+:i>1[a.r|a>1(a1r>+(b1r:b>1(b1r>=(k=rt.u+111=.
+	volta para colchete
+	escreve (
+:i>1(a.r|a>1(a1r>+(b1r:b>1(b1r>=(k=rt.u+111=.
+	vai ate tape maisuculo
+	loop
+
+replicar funcoes para o estado b
+
+
+
+
+
+
+
+- State_for_read_1:
+	vai para >, vai mais um pra direita
+|i>1a.r:a>1a1r>+b1r:b>1b1r>=k=r.u1+111=.
+	tem que achar ">1"
+		se leu 1, escreve u e vai para Next_State_1, vai par dir
+		se leu dif, vai para >
+		se leu :, erro
+|i>ua.r:a>1a1r>+b1r:b>1b1r>=k=r.u1+111=.
+
+------------- achou estado atual e char lido ------------------
+- anda 1 para dir, pega estado e procura ":a" para di
+- Next_state_1:
+	se leu a, vai para Next_1_a
+	se leu +, vai para Next_1_+
+	se leu =, vai para Next_1_=
+	se leu ., vai para Next_1_.
+
+|i>1a.r:a>1a1r>+b1r:b>1b1r>=k=r.u1+111=.
+- Next_1_a:
+	vai para comeco
+
+
+
+
+jq '.transitions | to_entries[].value[].to_state'  utm.json | sort | uniq | tr '\n' ','
+
+lein run ./machines/utm.json "^:i>1(apr:a>1(a1r>+(b1r:b>1(b1r>=(k=rt11+111="
+
+
+
+

@@ -1,0 +1,49 @@
+Validacoes:
+	Exatos 2 argumentos cli
+	1o arg eh arquivo existe
+	2o arg eh string nao vazia
+
+Arquivo:
+	Contem todas chaves necessarias
+	Estado inicial faz parte dos estados
+	Estados finais faz parte dos estados
+	Lista de estados nao pode ser vazia
+	Dicionarios nao podem ser vazios
+
+Fita:
+	Nao esta vazia
+	So possui caracteres pertencentes ao dicionario
+	Nao pode ter blank
+
+ ============================================
+Algoritmo:
+	Init
+		Seta estados
+		Cabecote no 1o item da fita
+
+	1) Recebe cabecote, fita, transicoes
+		Le char da fita
+		Muda de estado
+		Write (se especificado)
+		Move cabecote (se especificado)
+		Atualiza posicao do cabecote
+
+	2) Cosmetico
+		Gera string fita sem cabcote
+		Gera string fita com cabecote
+		Fazer print amigavel estilo pdf enunciado
+
+========================
+Bonus
+Determinar quantas linhas (lins) e seus chars
+Fazer script que gera strings de entrada para cada json segundo lin acima (gerando arquivo .i) [Gera_inputs.sh]
+Fazer script que roda cada json e gera seus respectivos outputs
+	Nome do json como variavel
+	Abre o arquivo .i da variavel
+	Para cada linha do arquivo
+	Roda o json da variavel salvado output em .o da variavel
+[executa_maquinas]
+Fazer script que junta todos outputs numa unica tabela
+[gera_outputs]
+
+
