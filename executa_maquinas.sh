@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 #set -x
 
-rm *.o
+rm -f *.o
 
 path='./machines/'
 ext='.json'

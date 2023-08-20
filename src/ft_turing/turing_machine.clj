@@ -11,10 +11,9 @@
         ; If in last state, exit
         (do
           (println "|" (insert-head-in-tape head-position tape (get-blank machine-spec)))
-          (println "\nWE HAVE REACHER AN FINAL STATE, BYE BYE! :)")
-          (System/exit 0))
-      (> step 500000)
-        (bye "Maximum number of steps reached. Exiting")
+          (bye "\nWE HAVE REACHED A FINAL STATE, BYE BYE! :)"))
+        (> step 50000)
+          (bye "Maximum number of steps reached. Exiting")
       ; Else, update vars and execute machine
       :else
       (let
