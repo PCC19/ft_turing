@@ -199,7 +199,7 @@ lein run ./machines/utm.json "^:i>1(apr:a>1(a1r>+(b1r:b>1(b1r>=(k=rt11+111="
 - vai para input maisculo
 - escreve
 - move
-- poe novo maisculo
+- poe novo maisculo e pega nova tupla (estado,char)
 - vai para inicio tape
 
 4 estados: i, f, a, b
@@ -217,6 +217,7 @@ alfabeto:
 U M I 1 + = .
 : _ i a b p r f | e
 
+lein run ./machines/utm.json ":_i1apr_a1a1r_a+b1r_b1b1r_b=f=r|11+111="
 
     "init": [
         { "read" : "+", "to_state": "error_invalid_first" , "write": ".", "action": "RIGHT"},
