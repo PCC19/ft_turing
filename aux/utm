@@ -1,0 +1,58 @@
+lein run ./machines/utm.json ":_i1apr_a1a1r_a+b1r_b1b1r_b=f=r|11+111="
+========================================================================================
+jq '.transitions | to_entries[].value[].to_state'  utm.json | sort | uniq | tr '\n' ','
+
+- vai para inicio input
+- poe first char maisculo
+- vai para inicio tape
+
+- vai para input maiusculo
+- le e armazena no estado
+- vai para inicio tape
+- procura estado atual
+ - procura char lido
+ - armazena no estado:
+	- prox estado
+	- char a escrever
+	- move
+- vai para input maisculo
+- escreve
+- move
+- poe novo maisculo e pega nova tupla (estado,char)
+- vai para inicio tape
+
+4 estados: i, f, a, b
+alfabeto: 1, +, =, .
+5 regras:
+i1 -> a.r
+a1 -> a1r
+a+ -> b1r
+b1 -> b1r
+b= -> f=r
+
+:_i1apr_a1a1r_a+b1r_b1b1r_b=f=r|11+111=
+
+alfabeto:
+U M I 1 + = .
+: _ i a b p r f | e
+
+lein run ./machines/utm.json ":_i1apr_a1a1r_a+b1r_b1b1r_b=f=r|11+111="
+
+    "init": [
+        { "read" : "+", "to_state": "error_invalid_first" , "write": ".", "action": "RIGHT"},
+        { "read" : "=", "to_state": "error_invalid_first" , "write": ".", "action": "RIGHT"},
+        { "read" : "1", "to_state": "go_to_plus", "write": ".", "action": "RIGHT"}
+    ],
+    "go_to_plus": [
+        { "read" : "1", "to_state": "go_to_plus", "write": "1", "action": "RIGHT"},
+        { "read" : "+", "to_state": "go_to_equal", "write": "1", "action": "RIGHT"},
+        { "read" : "=", "to_state": "error_plus_expected", "write": "=", "action": "RIGHT"},
+        { "read" : ".", "to_state": "error_plus_expected", "write": ".", "action": "RIGHT"}
+    ],
+    "go_to_equal": [
+        { "read" : "1", "to_state": "go_to_equal", "write": "1", "action": "RIGHT"},
+        { "read" : "=", "to_state": "HALT_OK", "write": "=", "action": "RIGHT"},
+        { "read" : ".", "to_state": "error_equal_expected", "write": ".", "action": "RIGHT"},
+        { "read" : "+", "to_state": "error_equal_expected", "write": "+", "action": "LEFT"}
+    ]
+
