@@ -20,5 +20,5 @@ done
 rm tmp
 
 echo "Generating final table ..."
-paste -d ',' tamanho.i *.o > tabela.csv
+paste -d ',' tamanho.i *.o | tr -d '\t' > tabela.csv
 
